@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Django App</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <!-- <div class="container">
+        <img class="phone-img" src="{% static 'assets/phone.png' %}" alt="Smartphone Image">
+    </div> -->
+    <div id="smartphone">
+        <div id="uploadArea" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
+            <span>Drag and drop an image here or click to upload</span>
+        </div>
+        <img id="uploadedImage" alt="Uploaded Image">
+    </div>
+    <script>
+        function handleDrop(event) {
+            event.preventDefault();
+            const file = event.dataTransfer.files[0];
+
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const uploadedImage = document.getElementById('uploadedImage');
+                    uploadedImage.src = e.target.result;
+                    uploadedImage.style.display = 'block';
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function handleDragOver(event) {
+            event.preventDefault();
+        }
+    </script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+#smartphone {
+    position: relative;
+    width: 300px;
+    /* Set your desired smartphone width */
+    height: 500px;
+    /* Set your desired smartphone height */
+    background-color: #fff;
+    border: 16px solid #000;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#uploadArea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border: 2px dashed #ccc;
+}
+
+#uploadedImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+/* body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden; /* Prevent scrollbar on the page 
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.phone-img {
+    max-width: 90%;
+    max-height: 80%;
+    /* Ensure image doesn't exceed container height 
+    display: block;
+    /* Remove extra space below image 
+    margin: 0 auto;
+    /* Center the image within the container for mobile view 
+}
+
+@media (min-width: 768px) {
+
+    /* On wide screens, display the phone image on the left 
+    .container {
+        justify-content: flex-start;
+        padding: 0px;
+    }
+
+    .phone-img {
+        margin: 0;
+        /* Remove margin for left alignment on desktop view 
+    }
+} */
