@@ -94,3 +94,14 @@ function drop(event) {
 document.getElementById('bottone').addEventListener('click', function () {
     location.reload();
 });
+
+
+function openCamera() {
+    // Add logic to open the camera
+    alert('Camera opened!');
+}
+
+function unusedFunction() {
+    // Add logic for the unused button (leave it idle for now)
+    alert('This button is currently unused.');
+}
