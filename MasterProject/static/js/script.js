@@ -1,29 +1,32 @@
-//script.js
+// image-upload.js
 
-function handleDrop(event) {
-    event.preventDefault();
-    const file = event.dataTransfer.files[0];
+function openFileInput() {
+    document.getElementById('image-upload-input').click();
+}
 
-    if (file && file.type.startsWith('image/')) {
+function handleFileUpload() {
+    const input = document.getElementById('image-upload-input');
+    const container = document.getElementById('uploaded-image-container');
+
+    const file = input.files[0];
+
+    if (file) {
         const reader = new FileReader();
 
         reader.onload = function (e) {
-            const uploadedImage = document.getElementById('uploadedImage');
-            uploadedImage.src = e.target.result;
-            uploadedImage.style.display = 'block';
+            const image = new Image();
+            image.src = e.target.result;
+
+            // Add the 'wrap' class to the dynamically created image
+            image.classList.add('wrap');
+
+            container.innerHTML = ''; // Clear existing content
+            container.appendChild(image);
         };
 
         reader.readAsDataURL(file);
     }
 }
 
-function handleDragOver(event) {
-    event.preventDefault();
-}
-
-// Additional functionality can be added here as per your requirements
-
-// Example: If you want to trigger an action after image upload
-// document.getElementById('uploadedImage').addEventListener('click', function() {
-//     // Your code here
-// });
+// Attach event listener to file input
+document.getElementById('image-upload-input').addEventListener('change', handleFileUpload);
