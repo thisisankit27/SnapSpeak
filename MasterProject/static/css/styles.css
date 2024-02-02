@@ -190,6 +190,21 @@ body {
     /* Ensure that the container takes the full height */
 }
 
+.frame-posizione a.button {
+    margin-top: auto;
+    /* Push anchor tags to the bottom */
+    display: block;
+    width: 100%;
+    /* Make anchor tags take the full width */
+    text-align: center;
+    /* Center the content horizontally */
+}
+
+.frame-posizione a.button img {
+    max-width: 100%;
+    /* Ensure images do not exceed the width of the anchor tags */
+}
+
 #header {
     background: #555;
     box-shadow: 1px 2px 7px #333;
