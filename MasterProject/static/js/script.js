@@ -17,8 +17,8 @@ function handleFileUpload() {
             const image = new Image();
             image.src = e.target.result;
 
-            // Add the 'wrap' class to the dynamically created image
-            image.classList.add('wrap');
+            // Add the 'wrap' and 'shimmer' class to the dynamically created image
+            image.classList.add('wrap', 'shimmer');
 
             container.innerHTML = ''; // Clear existing content
             container.appendChild(image);
@@ -75,8 +75,8 @@ function drop(event) {
             const image = new Image();
             image.src = e.target.result;
 
-            // Add the 'wrap' class to the dynamically created image
-            image.classList.add('wrap');
+            // Add the 'wrap' and 'shimmer' class to the dynamically created image
+            image.classList.add('wrap', 'shimmer');
 
             container.innerHTML = ''; // Clear existing content
             container.appendChild(image);
@@ -89,3 +89,8 @@ function drop(event) {
         reader.readAsDataURL(file);
     }
 }
+
+// Add an event listener to the "bottone" element to refresh page
+document.getElementById('bottone').addEventListener('click', function () {
+    location.reload();
+});

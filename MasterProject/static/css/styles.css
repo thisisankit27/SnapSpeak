@@ -260,31 +260,38 @@ body {
 #menu ul {
     display: none;
     padding: 60px;
-
-
-
 }
 
 #menu ul li {
     float: none;
     background: #555;
-
-
-
 }
 
 
 .three-lines-menu {
     display: block;
     cursor: pointer;
-
 }
 
 #menu ul.menu-responsive {
     display: block;
     width: 100%;
     margin-top: 0;
-
 }
 
 /* Upload Sub-Section */
+.shimmer {
+    color: grey;
+    display: inline-block;
+    -webkit-mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/300% 100%;
+    background-repeat: no-repeat;
+    animation: shimmer 2.5s infinite;
+    font-size: 50px;
+    max-width: 100%;
+}
+
+@keyframes shimmer {
+    100% {
+        -webkit-mask-position: left
+    }
+}
