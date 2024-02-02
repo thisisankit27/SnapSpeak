@@ -178,8 +178,6 @@ body {
     border-radius: 100px;
 }
 
-
-
 .frame-posizione {
 
     margin-left: 0px;
@@ -191,8 +189,6 @@ body {
     height: 100%;
     /* Ensure that the container takes the full height */
 }
-
-
 
 #header {
     background: #555;
@@ -290,3 +286,5 @@ body {
     margin-top: 0;
 
 }
+
+/* Upload Sub-Section */
