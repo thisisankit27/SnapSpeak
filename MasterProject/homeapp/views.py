@@ -6,6 +6,7 @@ import base64
 from PIL import Image
 from io import BytesIO
 
+import time
 # Create your views here.
 
 
@@ -22,11 +23,14 @@ def upload_image_view(request):
         image = Image.open(BytesIO(base64.b64decode(image_data.split(',')[1])))
         print(image)
 
+        print('sleep started')
+        time.sleep(3)
+        print('sleep completed')
         # Process the image as needed
         # For example, you can save the image to the media folder
         # image.save('path/to/media/folder/your_uploaded_image.png')
 
         # return a response if needed
-        return JsonResponse({'status': 'success'})
+        return JsonResponse({'status': 'success', 'message': 'Image uploaded has some funcky knack to it, im sure it works'})
 
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})

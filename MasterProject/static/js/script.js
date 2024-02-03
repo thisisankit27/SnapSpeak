@@ -1,5 +1,3 @@
-// image-upload.js
-
 function openFileInput() {
     document.getElementById('image-upload-input').click();
 }
@@ -52,6 +50,7 @@ function sendDataToDjango(imageData) {
         success: function (data) {
             // Handle the success response from Django views
             console.log('Image successfully uploaded!');
+            displayOverlay(data.message);
         },
         error: function (error) {
             // Handle the error response from Django views
@@ -59,6 +58,58 @@ function sendDataToDjango(imageData) {
         },
     });
 }
+
+function displayOverlay(message) {
+    console.log("displaying overlay");
+    // Show overlay with the provided message
+    var overlayBox = document.getElementById("overlay-box");
+    var overlayText = document.getElementById("overlay-text");
+
+    if (overlayBox && overlayText) {
+        overlayBox.style.display = "block";
+        overlayText.innerText = '';
+        // typeWriter(message);
+        typeWriter(message, function () {
+            // Remove the 'shimmer' class after typewriting is completed
+            const image = document.querySelector('.wrap.shimmer');
+            if (image) {
+                image.classList.remove('shimmer');
+            }
+
+            // Add click event listener to reload the page when clicked
+            document.addEventListener('click', function () {
+                location.reload();
+            });
+        });
+
+    } else {
+        console.error("Error accessing overlay elements. Check your element IDs.");
+    }
+}
+
+function typeWriter(txt, callback) {
+    var speed = 90;
+    var i = 0;
+    var overlayText = document.getElementById("overlay-text");
+
+    function type() {
+        var char = txt.charAt(i) === ' ' ? '&nbsp;' : txt.charAt(i);
+        overlayText.innerHTML += char;
+        i++;
+
+        if (i < txt.length) {
+            setTimeout(type, speed);
+        } else {
+            if (typeof callback === 'function') {
+                callback();
+            }
+        }
+    }
+
+    type();
+}
+
+
 
 // Attach event listener to file input
 document.getElementById('image-upload-input').addEventListener('change', handleFileUpload);
