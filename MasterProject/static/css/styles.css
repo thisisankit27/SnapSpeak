@@ -349,6 +349,22 @@ body {
     margin-bottom: 10px;
 }
 
+#cameraModal .toggle-mode-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+#cameraModal .toggle-mode-btn:hover {
+    background-color: #2980b9;
+}
+
 .close-img {
     width: 30px;
     /* Adjust the size as needed */

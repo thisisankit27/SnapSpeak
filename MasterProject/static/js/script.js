@@ -149,6 +149,29 @@ function takePicture() {
     sendDataToDjango(imageData);
 }
 
+let isPortraitMode = false;
+
+function toggleVideoMode() {
+    isPortraitMode = !isPortraitMode;
+    adjustVideoMode();
+}
+
+function adjustVideoMode() {
+    const video = document.getElementById('cameraFeed');
+
+    if (isPortraitMode) {
+        video.style.transform = 'rotate(0deg)';
+        video.style.width = '100%';
+        video.style.height = 'auto';
+    } else {
+        video.style.transform = 'rotate(0deg)';
+        video.style.width = 'auto';
+        video.style.height = '100%';
+    }
+    console.log('Video mode changed to ' + (isPortraitMode ? 'portrait' : 'landscape'));
+}
+
+
 function closeCameraModal() {
     if (cameraStream) {
         // Stop the camera stream
