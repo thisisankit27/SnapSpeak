@@ -67,16 +67,49 @@ function displayOverlay(message) {
 
     if (overlayBox && overlayText) {
         overlayBox.style.display = "block";
-        overlayText.innerText = message;
+        overlayText.innerText = '';
+        // typeWriter(message);
+        typeWriter(message, function () {
+            // Remove the 'shimmer' class after typewriting is completed
+            const image = document.querySelector('.wrap.shimmer');
+            if (image) {
+                image.classList.remove('shimmer');
+            }
 
-        // Hide overlay after 3 seconds (adjust as needed)
-        setTimeout(function () {
-            overlayBox.style.display = "none";
-        }, 3000);
+            // Add click event listener to reload the page when clicked
+            document.addEventListener('click', function () {
+                location.reload();
+            });
+        });
+
     } else {
         console.error("Error accessing overlay elements. Check your element IDs.");
     }
 }
+
+function typeWriter(txt, callback) {
+    var speed = 90;
+    var i = 0;
+    var overlayText = document.getElementById("overlay-text");
+
+    function type() {
+        var char = txt.charAt(i) === ' ' ? '&nbsp;' : txt.charAt(i);
+        overlayText.innerHTML += char;
+        i++;
+
+        if (i < txt.length) {
+            setTimeout(type, speed);
+        } else {
+            if (typeof callback === 'function') {
+                callback();
+            }
+        }
+    }
+
+    type();
+}
+
+
 
 // Attach event listener to file input
 document.getElementById('image-upload-input').addEventListener('change', handleFileUpload);
