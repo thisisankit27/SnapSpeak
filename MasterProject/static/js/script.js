@@ -1,5 +1,3 @@
-// image-upload.js
-
 function openFileInput() {
     document.getElementById('image-upload-input').click();
 }
@@ -52,12 +50,32 @@ function sendDataToDjango(imageData) {
         success: function (data) {
             // Handle the success response from Django views
             console.log('Image successfully uploaded!');
+            displayOverlay(data.message);
         },
         error: function (error) {
             // Handle the error response from Django views
             console.error('Error uploading image:', error);
         },
     });
+}
+
+function displayOverlay(message) {
+    console.log("displaying overlay");
+    // Show overlay with the provided message
+    var overlayBox = document.getElementById("overlay-box");
+    var overlayText = document.getElementById("overlay-text");
+
+    if (overlayBox && overlayText) {
+        overlayBox.style.display = "block";
+        overlayText.innerText = message;
+
+        // Hide overlay after 3 seconds (adjust as needed)
+        setTimeout(function () {
+            overlayBox.style.display = "none";
+        }, 3000);
+    } else {
+        console.error("Error accessing overlay elements. Check your element IDs.");
+    }
 }
 
 // Attach event listener to file input

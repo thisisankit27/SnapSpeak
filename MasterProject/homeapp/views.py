@@ -27,6 +27,6 @@ def upload_image_view(request):
         # image.save('path/to/media/folder/your_uploaded_image.png')
 
         # return a response if needed
-        return JsonResponse({'status': 'success'})
+        return JsonResponse({'status': 'success', 'message': 'Image uploaded has some funcky knack to it, im sure it works'})
 
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
