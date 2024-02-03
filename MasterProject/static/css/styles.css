@@ -158,15 +158,22 @@ body {
     border-radius: 100px;
 }
 
-
 #schermo {
     height: 522px;
     width: 295px;
-    background-color: #fff;
+    background-color: white;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1)inset;
     overflow: hidden;
     position: relative;
+}
 
+/* Add a class to control background image */
+#schermo.has-background-image {
+    background-image: url(../assets/background.png);
+    /* Ensure the background image covers the entire div */
+    background-size: cover;
+    /* Center the background image*/
+    background-position: center;
 }
 
 
@@ -179,7 +186,6 @@ body {
 }
 
 .frame-posizione {
-
     margin-left: 0px;
     margin-right: -1px;
     /* display: block; */
@@ -269,9 +275,6 @@ body {
     display: none;
 }
 
-
-
-
 #menu ul {
     display: none;
     padding: 60px;
@@ -309,4 +312,76 @@ body {
     100% {
         -webkit-mask-position: left
     }
+}
+
+#cameraModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#cameraModal .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 60%;
+    max-width: 400px;
+    /* Adjust the maximum width as needed */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+#cameraModal .close-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.close-img {
+    width: 30px;
+    /* Adjust the size as needed */
+    height: 30px;
+    cursor: pointer;
+}
+
+/* Your existing styles remain the same */
+
+.camera-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#cameraFeed {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.take-picture-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.take-picture-btn:hover {
+    background-color: #45a049;
 }
