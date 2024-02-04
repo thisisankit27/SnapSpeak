@@ -11,8 +11,8 @@ Before you begin, make sure you have the following installed and set up on your 
 2. Set the system PATH for Tesseract to `C:\Program Files\Tesseract-OCR`.
 
 3. Create a new system environment variable:
-   - **Name**: TESSDATA_PREFIX
-   - **Value**: C:\Program Files\Tesseract-OCR\tessdata
+   - **Name**: `TESSDATA_PREFIX`
+   - **Value**: `C:\Program Files\Tesseract-OCR\tessdata`
 
 ## Installation
 
@@ -85,12 +85,3 @@ MasterProject/
 └── templates/
     └── homepage.html
 ```
-
-Feel free to customize the structure based on your application's needs.
-
-## Additional Notes
-
-- Ensure that the Tesseract OCR is properly configured for text recognition features in your application.
-- [Any other important notes or instructions specific to your application can be added here.]
-
-Happy coding!
