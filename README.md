@@ -41,13 +41,19 @@ Before you begin, make sure you have the following installed and set up on your 
    ```
 
    Replace `<your-secret-key>` with a securely generated secret key for your Django application. You can use online tools or Django's `django.core.management.utils.get_random_secret_key()` method to generate a new key. Make sure to keep this key confidential and never share it publicly.
+
+5. Collect the static files:
+
+```bash
+python manage.py runserver
+```
    
 ## Run the Application
 
 Run the following command to start the Django development server:
 
 ```bash
-python manage.py runserver
+python manage.py collectstatic
 ```
 
 ## Project Structure
