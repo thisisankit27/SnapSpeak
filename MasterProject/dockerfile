@@ -24,6 +24,9 @@ RUN pip install -r requirements.txt
 # Copy project (Copy everything in our root directory into the image)
 COPY . .
 
+# Run collectstatic to collect static files
+RUN python manage.py collectstatic --noinput
+
 #setting.py: WSGI_APPLICATION = 'MasterProject.wsgi.application' (Name of WSGI Application)
 #Purpose of this is to expose the WSGI application to the web server on port 8000
 #0.0.0.0 means all IP addresses
