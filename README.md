@@ -1,7 +1,8 @@
 # SnapSpeak - Visual Elocution Synthesis
 
-Welcome to MasterProject, a Django application for [brief description of your application].
 
+
+### Windows Installation
 ## Prerequisites
 
 Before you begin, make sure you have the following installed and set up on your system:
@@ -45,7 +46,7 @@ Before you begin, make sure you have the following installed and set up on your 
 5. Collect the static files:
 
 ```bash
-python manage.py runserver
+python manage.py collectstatic
 ```
    
 ## Run the Application
@@ -53,41 +54,5 @@ python manage.py runserver
 Run the following command to start the Django development server:
 
 ```bash
-python manage.py collectstatic
-```
-
-## Project Structure
-
-```
-MasterProject/
-├── .gitignore
-├── README.md
-├── requirements.txt
-├── tree.txt
-├── homeapp/
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── tests.py
-│   ├── urls.py
-│   ├── views.py
-│   ├── __init__.py
-│   └── migrations/
-│       └── __init__.py
-├── MasterProject/
-│   ├── .env
-│   ├── asgi.py
-│   ├── settings.py
-│   ├── urls.py
-│   ├── wsgi.py
-│   └── __init__.py
-├── static/
-│   ├── assets/
-│   │   └── ...
-│   └── css/
-│       └── styles.css
-│   └── js/
-│       └── script.js
-└── templates/
-    └── homepage.html
+python manage.py runserver
 ```
