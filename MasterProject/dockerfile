@@ -1,0 +1,32 @@
+# The whole point of docker image is to build a compressed version of our entire project in a single image, this is called Dockerized or Compartmentalized 
+
+# In summary, using Gunicorn to serve your Dockerized application as a WSGI application means you're employing Gunicorn as the HTTP server outside the Docker container,
+# and it handles the communication between the web server and your Python web application through the WSGI interface.
+# This setup is common in deploying Python web applications in production environments.
+# pip install gunicorn
+
+
+# Image build command
+FROM python:3.10-bullseye
+
+# Set environment variables
+ENV PYTHONBUFFERED=1
+
+# Set work directory
+WORKDIR /django
+
+# Install dependencies
+COPY requirements.txt requirements.txt
+
+# Install dependencies
+RUN pip install -r requirements.txt
+
+# Copy project (Copy everything in our root directory into the image)
+COPY . .
+
+#setting.py: WSGI_APPLICATION = 'MasterProject.wsgi.application' (Name of WSGI Application)
+#Purpose of this is to expose the WSGI application to the web server on port 8000
+#0.0.0.0 means all IP addresses
+CMD gunicorn MasterProject.wsgi:application --bind 0.0.0.0:8000
+
+EXPOSE 8000

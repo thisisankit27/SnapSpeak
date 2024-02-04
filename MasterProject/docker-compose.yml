@@ -1,0 +1,19 @@
+# YML is data serializatio language, very readable and easy to use than JSON
+
+version: "3.8"
+services:
+  app:
+    build: . #. indicated that we are copying everything from the root directory
+    volumes:
+      - .:/django # Volume means that this 'WORKDIR /django' will be mapped to '/django' in the container and encapslated the project files
+    ports:
+      - 8000:8000 # Port mapping, '8000' will be mapped to '8000' in the container, basically bridge the connection between the host and the container
+    image: application:django
+    container_name: app_container_django
+    command: gunicorn MasterProject.wsgi:application --bind 0.0.0.0:8000
+
+# docker-compose build
+# docker-compose up
+# docker-compose down
+# docker builder prune -> clears the cache
+# docker image prune -> Remove all dangling/unused images
