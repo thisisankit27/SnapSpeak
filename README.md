@@ -58,7 +58,6 @@ Run the following command to start the Django development server:
 python manage.py runserver
 ```
 
-```markdown
 ## Docker Installation
 
 SnapSpeak can also be deployed using Docker for easier setup and portability. Follow these steps to run the application using Docker:
