@@ -2,7 +2,8 @@
 
 
 
-### Windows Installation
+## Windows Installation
+
 ## Prerequisites
 
 Before you begin, make sure you have the following installed and set up on your system:
@@ -20,7 +21,7 @@ Before you begin, make sure you have the following installed and set up on your 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/MasterProject.git
+   git clone https://github.com/thisisankit27/SnapSpeak.git
    ```
 
 2. Navigate to the project directory:
@@ -55,4 +56,46 @@ Run the following command to start the Django development server:
 
 ```bash
 python manage.py runserver
+```
+
+```markdown
+## Docker Installation
+
+SnapSpeak can also be deployed using Docker for easier setup and portability. Follow these steps to run the application using Docker:
+
+1. Make sure you have Docker installed on your system. If not, you can download and install Docker Desktop from [Docker's official website](https://www.docker.com/products/docker-desktop).
+
+2. Clone the repository:
+
+   ```bash
+   git clone https://github.com/thisisankit27/SnapSpeak.git
+   ```
+
+3. Navigate to the project directory:
+
+   ```bash
+   cd MasterProject
+   ```
+
+4. Build and start the Docker containers using Docker Compose:
+
+   ```bash
+   docker-compose up --build
+   ```
+
+   This command will build the Docker images and start the SnapSpeak application along with its dependencies.
+
+5. Access the SnapSpeak application by visiting [http://localhost:8000/](http://localhost:8000/) in your web browser.
+
+   The application should now be running in a Docker container, providing a convenient and isolated environment for SnapSpeak.
+
+6. To stop the Docker containers, use the following command:
+
+   ```bash
+   docker-compose down
+   ```
+
+   This will stop and remove the containers.
+
+**Note**: Ensure that port 8000 on your local machine is available and not occupied by another service before running Docker Compose. Adjust the `docker-compose.yml` file if you need to change the port configuration.
 ```
