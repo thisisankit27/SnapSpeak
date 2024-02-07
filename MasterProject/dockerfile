@@ -1,38 +1,53 @@
 # The whole point of docker image is to build a compressed version of our entire project in a single image, this is called Dockerized or Compartmentalized 
 
-# In summary, using Gunicorn to serve your Dockerized application as a WSGI application means you're employing Gunicorn as the HTTP server outside the Docker container,
-# and it handles the communication between the web server and your Python web application through the WSGI interface.
+# In summary, using Gunicorn to serve your Dockerized application as a WSGI application means you're employing Gunicorn as the HTTP server, while Gunicorn is indeed running inside the Docker container, it serves as the HTTP server for your Django application, making your application accessible from external clients via HTTP requests.,
 # This setup is common in deploying Python web applications in production environments.
 # pip install gunicorn
 
 
-# Image build command
+# Image build command: Docker container will be built on top of the Python 3.10 image using the Debian "bullseye" distribution as the base. This provides a pre-configured environment with Python already installed, allowing you to run Python applications within the Docker container.
 FROM python:3.10-bullseye
 
-# Set environment variables
+# Set environment variables: The PYTHONBUFFERED environment variable is used to control the buffering behavior for standard output (stdout) and standard error (stderr) streams when running Python in buffered mode. Setting it to 1 ensures that Python outputs are immediately flushed to the corresponding streams, rather than being buffered, which can be useful for logging and debugging purposes when running Python applications inside Docker containers.
 ENV PYTHONBUFFERED=1
 
-# Set work directory
+# Set work directory: it'll encapsulate all the files present in same root directory inside it, and further commands will be executed in this directory
 WORKDIR /django
 
-# Install dependencies
+# Install dependencies: The COPY instruction in a Dockerfile is used to copy files or directories from the host machine (the machine where you're building the Docker image) into the Docker image being created.
+# The first requirements.txt refers to the path of the file or directory on the host machine.
+# The second requirements.txt refers to the path where the file or directory should be copied to inside the Docker image.
 COPY requirements.txt requirements.txt
+# now it'll be like-> django/requirements.txt
 
-# Install dependencies
+# Install dependencies:  Dockerfile installs the Python dependencies listed in the requirements.txt file into the Docker image being built
 RUN pip install -r requirements.txt
 
 # Install tesseract OCR engine
+# apt-get update: It ensures that your package manager has the latest information about available packages and their versions.
+# -y: This flag automatically answers "yes" to all prompts
 RUN apt-get update && apt-get install -y tesseract-ocr
 
 # Copy project (Copy everything in our root directory into the image)
+# The first . refers to the path of the files or directories on the host machine.
+# The second . refers to the path where the files or directories should be copied to inside the Docker image.
 COPY . .
 
 # Run collectstatic to collect static files
+# --noinput is an option that suppresses any interactive prompts during the execution of the collectstatic command. It's commonly used in automated scripts or Dockerfiles where there's no human interaction.
 RUN python manage.py collectstatic --noinput
 
 #setting.py: WSGI_APPLICATION = 'MasterProject.wsgi.application' (Name of WSGI Application)
 #Purpose of this is to expose the WSGI application to the web server on port 8000
 #0.0.0.0 means all IP addresses
+#  CMD instruction in a Dockerfile specifies the command that will be executed when a container is started from the image
+# --bind 0.0.0.0:8000, you're instructing Gunicorn to start serving your Django application on port 8000
+#  IP address 0.0.0.0, meaning it will listen for incoming connections on all network interfaces
 CMD gunicorn MasterProject.wsgi:application --bind 0.0.0.0:8000
+# You don't need to rebuild the Docker image every time you want to change the port number for serving your Django application
+# You simply need to restart your Docker container (or create a new one if it's not running), and the Gunicorn server will start serving your Django application on port 8080 within the container.
 
+# EXPOSE 8000 in your Dockerfile, you're essentially indicating that your containerized application listens on port 8000 for incoming connections.
+# However, for the ports to be accessible from outside the container, you still need to explicitly map or publish them when running the container, 
+# a Docker Compose configuration (ports directive). This allows the host machine to route incoming traffic to the specified ports on the container.
 EXPOSE 8000
