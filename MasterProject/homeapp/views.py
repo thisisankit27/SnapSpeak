@@ -9,7 +9,12 @@ from io import BytesIO
 import time
 import pytesseract
 
+# Importing the Keras libraries and packages
+from keras.models import load_model
+
 # Create your views here.
+
+captioning_model = load_model("my_model.h5")
 
 
 def home(request):
@@ -26,21 +31,22 @@ def perform_ocr(image):
 def upload_image_view(request):
     if request.method == 'POST':
         image_data = request.POST.get('image_data')
-
         # Convert base64 image data to PIL Image
         image = Image.open(BytesIO(base64.b64decode(image_data.split(',')[1])))
-        print(image)
+        # captioning_image = BytesIO()
+        # image.save(captioning_image, format='JPEG')
+        # captioning_image.seek(0)
 
-        print('sleep started')
-        time.sleep(3)
-        print('sleep completed')
+        # Captioning Function calls START here:
 
-        ocrText = perform_ocr(image)
-        # Process the image as needed
-        # For example, you can save the image to the media folder
-        # image.save('path/to/media/folder/your_uploaded_image.png')
+        captions = "this is a beautiful image"
+
+        # Captioning function calls END here
+
+        # ocrText = perform_ocr(image)
 
         # return a response if needed
-        return JsonResponse({'status': 'success', 'message': ocrText})
+        return JsonResponse({'status': 'success', 'message': captions})
+        # return JsonResponse({'status': 'success', 'message': ocrText, 'captions': captions})
 
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
