@@ -97,4 +97,3 @@ SnapSpeak can also be deployed using Docker for easier setup and portability. Fo
    This will stop and remove the containers.
 
 **Note**: Ensure that port 8000 on your local machine is available and not occupied by another service before running Docker Compose. Adjust the `docker-compose.yml` file if you need to change the port configuration.
-```
