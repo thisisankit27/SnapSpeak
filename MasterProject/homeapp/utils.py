@@ -53,4 +53,4 @@ def generate_caption_for_image(image):
     # image = Image.open(image_path)
     photo = extract_features(image, xception_model)
     caption = generate_caption(model, tokenizer, photo, max_length)
-    return caption, image
+    return caption
