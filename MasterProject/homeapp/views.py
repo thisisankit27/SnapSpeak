@@ -8,13 +8,8 @@ from io import BytesIO
 
 import time
 import pytesseract
-
 # Importing the Keras libraries and packages
-from keras.models import load_model
-
-# Create your views here.
-
-captioning_model = load_model("my_model.h5")
+from .utils import generate_caption_for_image
 
 
 def home(request):
@@ -39,7 +34,7 @@ def upload_image_view(request):
 
         # Captioning Function calls START here:
 
-        captions = "this is a beautiful image"
+        captions, _ = generate_caption_for_image(image)
 
         # Captioning function calls END here
 
