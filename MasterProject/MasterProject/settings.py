@@ -14,6 +14,7 @@ from pathlib import Path
 import environ
 import os
 
+os.environ['CUDA_VISIBLE_DEVICES'] = ''
 env = environ.Env()
 environ.Env.read_env()
 

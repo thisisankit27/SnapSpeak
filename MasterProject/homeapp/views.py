@@ -34,14 +34,18 @@ def upload_image_view(request):
 
         # Captioning Function calls START here:
 
-        captions, _ = generate_caption_for_image(image)
+        captions = generate_caption_for_image(image)
 
         # Captioning function calls END here
 
-        # ocrText = perform_ocr(image)
+        ocrText = perform_ocr(image)
+        if (ocrText == ""):
+            ocrText = "No Text Found"
+
+        contcatenated = "Visual Elocution: " + captions + "\n" + "OCR: " + ocrText
 
         # return a response if needed
-        return JsonResponse({'status': 'success', 'message': captions})
+        return JsonResponse({'status': 'success', 'message': contcatenated})
         # return JsonResponse({'status': 'success', 'message': ocrText, 'captions': captions})
 
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
