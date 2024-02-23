@@ -3,6 +3,7 @@
 import os
 import sys
 import webbrowser
+import environ
 
 flag_file = "flag.txt"
 
@@ -36,4 +37,5 @@ def main():
 
 
 if __name__ == '__main__':
+    environ.Env.read_env('.env')
     main()

@@ -27,6 +27,7 @@ Before you begin, make sure you have the following installed and set up on your 
 2. Navigate to the project directory:
 
    ```bash
+   cd SnapSpeak
    cd MasterProject
    ```
 
@@ -36,9 +37,10 @@ Before you begin, make sure you have the following installed and set up on your 
    pip install -r requirements.txt
    ```
 
-4. Go to the `MasterProject` directory and create a `.env` file in the same folder as `settings.py`. Add the following line to the `.env` file:
+4. Create a `.env` file in the same folder as `manage.py`. Add the following line to the `.env` file:
 
    ```dotenv
+   DEBUG=1
    SECRET_KEY=<your-secret-key>
    ```
 
@@ -49,7 +51,7 @@ Before you begin, make sure you have the following installed and set up on your 
 ```bash
 python manage.py collectstatic
 ```
-   
+
 ## Run the Application
 
 Run the following command to start the Django development server:
@@ -57,7 +59,12 @@ Run the following command to start the Django development server:
 ```bash
 python manage.py runserver
 ```
+or 
 
+```bash
+gunicorn MasterProject.wsgi:application --bind 127.0.0.1:8000
+```
+   
 ## Docker Installation
 
 SnapSpeak can also be deployed using Docker for easier setup and portability. Follow these steps to run the application using Docker:
@@ -73,27 +80,38 @@ SnapSpeak can also be deployed using Docker for easier setup and portability. Fo
 3. Navigate to the project directory:
 
    ```bash
+   cd SnapSpeak
    cd MasterProject
    ```
 
-4. Build and start the Docker containers using Docker Compose:
+4. Create a `.env` file in the same folder as `manage.py`. Add the following line to the `.env` file:
 
-   ```bash
-   docker-compose up --build
+   ```dotenv
+   DEBUG=1
+   SECRET_KEY=<your-secret-key>
    ```
 
-   This command will build the Docker images and start the SnapSpeak application along with its dependencies.
+   Replace `<your-secret-key>` with a securely generated secret key for your Django application. You can use online tools or Django's `django.core.management.utils.get_random_secret_key()` method to generate a new key. Make sure to keep this key confidential and never share it publicly.
 
-5. Access the SnapSpeak application by visiting [http://localhost:8000/](http://localhost:8000/) in your web browser.
+
+5. Build and start the Docker containers using Docker Compose:
+
+   ```bash
+   docker compose up --build
+   ```
+
+   This command will build the Docker image and start the SnapSpeak application along with its dependencies.
+
+6. Access the SnapSpeak application by visiting [http://localhost:8001/](http://localhost:8001/) in your web browser.
 
    The application should now be running in a Docker container, providing a convenient and isolated environment for SnapSpeak.
 
-6. To stop the Docker containers, use the following command:
+7. To stop the Docker containers, use the following command:
 
    ```bash
-   docker-compose down
+   docker compose down
    ```
 
    This will stop and remove the containers.
 
-**Note**: Ensure that port 8000 on your local machine is available and not occupied by another service before running Docker Compose. Adjust the `docker-compose.yml` file if you need to change the port configuration.
+**Note**: Ensure that port 8001 on your local machine is available and not occupied by another service before running Docker Compose. Adjust the `docker-compose.yml` file if you need to change the port configuration.

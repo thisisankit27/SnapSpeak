@@ -1,11 +1,18 @@
 version: "3.8"
 services:
   app:
-    build: .
-    volumes:
-      - .:/django
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: snapspeak-django:v1
+    environment:
+      - PORT=8020
+    env_file:
+      - .env
     ports:
-      - 8000:8000
-    image: application:django
-    container_name: app_container_django
-    command: gunicorn MasterProject.wsgi:application --bind 0.0.0.0:8000
+      - 8001:8020
+    # volumes:
+    #   - .:/django
+    container_name: snapspeak_app_container
+    # command: gunicorn MasterProject.wsgi:application --bind 0.0.0.0:8000
+    command: sh -c "/django/docker-entrypoint.sh"
