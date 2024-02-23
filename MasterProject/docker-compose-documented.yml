@@ -1,0 +1,57 @@
+# YML is data serializatio language, very readable and easy to use than JSON
+
+version: "3.8"
+services:
+  app:
+    build: . #. indicated that we are copying everything from the root directory
+    volumes:
+      - .:/django # Volume means that this 'WORKDIR /django' will be mapped to '/django' in the container and encapslated the project files
+    ports:
+      - 8000:8000 # Port mapping, host_port '8000' will be mapped to '8000' in the container, basically bridge the connection between the host and the container
+    image: application:django
+    container_name: app_container_django
+    command: gunicorn MasterProject.wsgi:application --bind 0.0.0.0:8000
+
+# docker-compose build
+# docker-compose up
+# docker-compose down
+# docker builder prune -> clears the cache
+# docker image prune -> Remove all dangling/unused images
+
+# Docker Desktop: 
+# masterproject: C:\Users\thisi\Desktop\SnapSpeak\MasterProject -> Docker Compose looks for the docker-compose.yml file in the directory: section represents the project directory on your host machine
+
+# Services:
+# A service is a definition for a containerized application. It typically represents an individual component or unit of your application stack, such as a web server, a database, or any other service that your application requires
+# Each service runs in its own isolated container. This isolation ensures that each component of your application operates independently and can be scaled, updated, or replaced without affecting other components
+
+# app
+# Here 'app' is a service. you might have separate services for your Django application, database (such as PostgreSQL or MySQL), caching server (like Redis), message broker (like RabbitMQ), etc.
+# Each service runs in its own isolated container. This isolation ensures that each component of your application operates independently and can be scaled, updated, or replaced without affecting other components.
+# Docker Compose manages the lifecycle of these containers and handles the networking between them based on the configuration you provide.
+
+# build: .
+# The Dockerfile contains the instructions for building the Docker image.
+# The build directive in the Docker Compose configuration tells Docker Compose to use the Dockerfile to build the image for the specified service.
+# Docker Compose orchestrates the build process according to the instructions provided in the Dockerfile and any additional configuration specified in the Docker Compose file.
+
+# .:/django
+# The . volume is mapped to the entire project directory to the /django directory in the container.
+# mount the current directory on the host machine (where the docker-compose.yml file is located) to the /django directory inside the container, live changes in host machine is reflected on the container
+
+# 8000:8000
+# when you access port 8000 on the host machine, the traffic will be forwarded to port 8000 inside the container, where your application (or service) is listening for incoming connections. This allows you to access your application running inside the container from the host machine
+
+# image: application:django
+# When you specify image: application:django in your Docker Compose configuration, you're telling Docker Compose to use a Docker image named application with the tag django for the service defined in your docker-compose.yml file.
+# When you specify the image in this way, Docker Compose will look for an existing Docker image named application with the tag django in your local Docker registry. If the image does not exist locally, Docker Compose will attempt to pull it from a remote registry (such as Docker Hub) unless you've already built it locally.
+# In this case, application is the name of the image, and django is the tag. These are not default values; rather, they're specified by you in your Docker Compose file.
+# If you run docker-compose build, Docker Compose will build the image based on the Dockerfile in the current directory and tag it with application:django
+# when you run docker-compose build, Docker Compose will use the information specified in your docker-compose.yml file to build the image for the service(s) defined in the file.
+
+# container_name: app_container_django
+# container_name directive in Docker Compose allows you to specify a custom name for the container that will be created based on the service defined in your docker-compose.yml file
+
+# command: gunicorn MasterProject.wsgi:application --bind 0.0.0.0:8000
+# Both gunicorn and python manage.py runserver are valid options for serving a Django application within a Docker container. However, gunicorn is often preferred for production deployments due to its ability to handle more concurrent connections and better performance compared to the Django development server
+# MasterProject.wsgi:application: This specifies the WSGI application that Gunicorn should serve. MasterProject.wsgi refers to the WSGI module within your Django project, and application is the callable object within that module
