@@ -1,6 +1,12 @@
-# SnapSpeak - Visual Elocution Synthesis
+# SnapSpeak - Redefining Visual Storytelling
 
+SnapSpeak is your go-to platform for transforming images into captivating narratives. Our user-friendly interface allows for seamless image uploads, drag-and-drop functionality, and on-the-go capture using the Media Stream API. Choose between our Image Caption Generator or OCR for versatile text extraction.
 
+Behind the scenes, our server processes images with precision, employing advanced techniques like py-tesseract OCR and a finely tuned model trained on the Flickr30K dataset. 
+
+The future of SnapSpeak is bright. We're expanding with MongoDB integration for image storage, Docker deployment, and scaling on Digital Ocean's Kubernetes. Jenkins ensures a smooth development pipeline.
+
+Join us in revolutionizing visual communication with SnapSpeak. Let your images do the talking.
 
 ## Windows Installation
 
