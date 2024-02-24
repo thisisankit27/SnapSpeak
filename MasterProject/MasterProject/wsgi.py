@@ -8,6 +8,15 @@ https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/
 """
 
 import os
+import pathlib
+import environ
+
+CURRENT_DIR = pathlib.Path(__file__).resolve().parent
+BASE_DIR = CURRENT_DIR.parent
+ENV_FILE_PATH = BASE_DIR / '.env'
+
+env = environ.Env()
+env.read_env(str(ENV_FILE_PATH))
 
 from django.core.wsgi import get_wsgi_application
 
