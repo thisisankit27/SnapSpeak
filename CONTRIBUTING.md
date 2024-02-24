@@ -10,7 +10,7 @@ Thank you for considering contributing to SnapSpeak! We appreciate your interest
 
 - Contributing Code: To contribute code to SnapSpeak, follow these steps:
   1. Fork the repository to your GitHub account.
-  2. Create a new branch from the `main` branch for your changes.
+  2. Create a new branch from the `master` branch for your changes.
   3. Make your desired changes and ensure they adhere to the project's coding standards.
   4. Test your changes thoroughly.
   5. Commit your changes and create a clear, descriptive pull request (PR) explaining the purpose of your changes.
