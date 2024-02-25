@@ -1,18 +1,26 @@
 version: "3.8"
 services:
   app:
+    depends_on:
+      - mongodb
     build:
       context: .
       dockerfile: Dockerfile
     image: snapspeak-django:v1
-    environment:
-      - PORT=8020
     env_file:
       - .env
     ports:
-      - 8001:8020
-    # volumes:
-    #   - .:/django
-    container_name: snapspeak_app_container
-    # command: gunicorn MasterProject.wsgi:application --bind 0.0.0.0:8000
+      - ${DJANGO_PROD_PORT}:${DJANGO_EXPOSE_PORT}
+    container_name: snapspeak_server
     command: sh -c "/django/docker-entrypoint.sh"
+  
+  mongodb:
+    image: mongo:jammy
+    container_name: snapspeak_mongodb
+    ports:
+      - ${MONGODB_PROD_PORT}:${MONGODB_EXPOSE_PORT}
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:

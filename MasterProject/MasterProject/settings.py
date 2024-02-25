@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import environ
 import os
+import pymongo
 
 os.environ['CUDA_VISIBLE_DEVICES'] = ''
 
@@ -85,6 +86,7 @@ DATABASES = {
     }
 }
 
+from mongodb_config import *
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
