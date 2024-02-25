@@ -47,7 +47,13 @@ Before you begin, make sure you have the following installed and set up on your 
 
    ```dotenv
    DEBUG=1
+   DJANGO_EXPOSE_PORT=8020
+   DJANGO_PROD_PORT=8001
    SECRET_KEY=<your-secret-key>
+
+   MONGODB_HOST=mongodb
+   MONGODB_EXPOSE_PORT=27017
+   MONGODB_PROD_PORT=27017
    ```
 
    Replace `<your-secret-key>` with a securely generated secret key for your Django application. You can use online tools or Django's `django.core.management.utils.get_random_secret_key()` method to generate a new key. Make sure to keep this key confidential and never share it publicly.
@@ -94,7 +100,13 @@ SnapSpeak can also be deployed using Docker for easier setup and portability. Fo
 
    ```dotenv
    DEBUG=1
+   DJANGO_EXPOSE_PORT=8020
+   DJANGO_PROD_PORT=8001
    SECRET_KEY=<your-secret-key>
+
+   MONGODB_HOST=mongodb
+   MONGODB_EXPOSE_PORT=27017
+   MONGODB_PROD_PORT=27017
    ```
 
    Replace `<your-secret-key>` with a securely generated secret key for your Django application. You can use online tools or Django's `django.core.management.utils.get_random_secret_key()` method to generate a new key. Make sure to keep this key confidential and never share it publicly.
