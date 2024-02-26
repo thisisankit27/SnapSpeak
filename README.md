@@ -9,7 +9,8 @@ The future of SnapSpeak is bright. We're expanding with MongoDB integration for 
 Join us in revolutionizing visual communication with SnapSpeak. Let your images do the talking.
 
 
-https://github.com/thisisankit27/SnapSpeak/assets/69184999/e911a645-5a31-4b9c-887f-75745685bb60
+
+https://github.com/thisisankit27/SnapSpeak/assets/69184999/83964317-aabe-4c90-82b9-ac8ccfffadc5
 
 
 ## Windows Installation
