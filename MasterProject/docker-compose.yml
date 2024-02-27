@@ -21,6 +21,25 @@ services:
       - ${MONGODB_PROD_PORT}:${MONGODB_EXPOSE_PORT}
     volumes:
       - mongo_data:/data/db
+  
+  redis:
+    image: redis:alpine
+    container_name: snapspeak_redis
+    ports:
+      - ${REDIS_PROD_PORT}:${REDIS_EXPOSE_PORT}
+    
+  celery_worker:
+    depends_on:
+      - app
+      - redis
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: snapspeak-celery:v1
+    env_file:
+      - .env
+    container_name: snapspeak_celery_worker
+    command: celery -A MasterProject worker --loglevel=info
 
 volumes:
   mongo_data:
