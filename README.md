@@ -13,12 +13,11 @@ Join us in revolutionizing visual communication with SnapSpeak. Let your images 
 https://github.com/thisisankit27/SnapSpeak/assets/69184999/83964317-aabe-4c90-82b9-ac8ccfffadc5
 
 
-## Windows Installation
-
 ## Prerequisites
 
 Before you begin, make sure you have the following installed and set up on your system:
 
+#### Windows
 1. [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) - Install Tesseract OCR for Windows using the installer: [tesseract-ocr-w64-setup-5.3.3.20231005.exe](https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-w64-setup-5.3.3.20231005.exe).
 
 2. Set the system PATH for Tesseract to `C:\Program Files\Tesseract-OCR`.
@@ -26,6 +25,13 @@ Before you begin, make sure you have the following installed and set up on your 
 3. Create a new system environment variable:
    - **Name**: `TESSDATA_PREFIX`
    - **Value**: `C:\Program Files\Tesseract-OCR\tessdata`
+
+#### Ubuntu
+1. Write these commands in the terminal:
+   ```bash
+   sudo apt-get update
+   sudo apt-get install -y tesseract-ocr
+   ```
 
 ## Installation
 
@@ -56,9 +62,14 @@ Before you begin, make sure you have the following installed and set up on your 
    DJANGO_PROD_PORT=8001
    SECRET_KEY=<your-secret-key>
 
-   MONGODB_HOST=mongodb
+   MONGODB_HOST=localhost
    MONGODB_EXPOSE_PORT=27017
    MONGODB_PROD_PORT=27017
+
+   REDIS_PROD_PORT=6379
+   REDIS_EXPOSE_PORT=6379
+
+   CELERY_BROKER_URL = 'redis://localhost:6379/0'
    ```
 
    Replace `<your-secret-key>` with a securely generated secret key for your Django application. You can use online tools or Django's `django.core.management.utils.get_random_secret_key()` method to generate a new key. Make sure to keep this key confidential and never share it publicly.
@@ -69,7 +80,7 @@ Before you begin, make sure you have the following installed and set up on your 
 python manage.py collectstatic
 ```
 
-## Run the Application
+### Run the Application
 
 Run the following command to start the Django development server:
 
@@ -80,6 +91,14 @@ or
 
 ```bash
 gunicorn MasterProject.wsgi:application --bind 127.0.0.1:8000
+```
+
+### Run Celery
+
+Run the following command in seperate terminal:
+
+```bash
+celery -A MasterProject worker --loglevel=info --concurrency 1 -E
 ```
    
 ## Docker Installation
@@ -112,6 +131,11 @@ SnapSpeak can also be deployed using Docker for easier setup and portability. Fo
    MONGODB_HOST=mongodb
    MONGODB_EXPOSE_PORT=27017
    MONGODB_PROD_PORT=27017
+
+   REDIS_PROD_PORT=6379
+   REDIS_EXPOSE_PORT=6379
+
+   CELERY_BROKER_URL = 'redis://redis:6379/0'
    ```
 
    Replace `<your-secret-key>` with a securely generated secret key for your Django application. You can use online tools or Django's `django.core.management.utils.get_random_secret_key()` method to generate a new key. Make sure to keep this key confidential and never share it publicly.

@@ -76,6 +76,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MasterProject.wsgi.application'
 
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL')
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
