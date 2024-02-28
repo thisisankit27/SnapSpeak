@@ -12,6 +12,9 @@ Join us in revolutionizing visual communication with SnapSpeak. Let your images 
 
 https://github.com/thisisankit27/SnapSpeak/assets/69184999/83964317-aabe-4c90-82b9-ac8ccfffadc5
 
+## System Design
+![Untitled design_page-0001](https://github.com/thisisankit27/SnapSpeak/assets/69184999/252a4f4a-c841-4796-a08a-200ce27705b5)
+
 
 ## Prerequisites
 
