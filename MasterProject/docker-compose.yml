@@ -12,6 +12,8 @@ services:
     ports:
       - ${DJANGO_PROD_PORT}:${DJANGO_EXPOSE_PORT}
     container_name: snapspeak_server
+    volumes:
+      - staticfiles_vol:/django/staticfiles
     command: sh -c "/django/docker-entrypoint.sh"
   
   mongodb:
@@ -40,6 +42,22 @@ services:
       - .env
     container_name: snapspeak_celery_worker
     command: celery -A MasterProject worker --loglevel=info
+  
+  nginx:
+    depends_on:
+    - app
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: snapspeak-nginx:v1
+    container_name: snapspeak_nginx
+    env_file:
+      - .env
+    ports:
+      - ${NGINX_PROD_PORT}:${NGINX_EXPOSE_PORT}
+    volumes:
+      - staticfiles_vol:/django/staticfiles
 
 volumes:
   mongo_data:
+  staticfiles_vol:
