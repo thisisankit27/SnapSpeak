@@ -14,8 +14,7 @@ RUN apt-get update && \
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
-RUN python manage.py collectstatic --noinput
-
+RUN python manage.py collectstatic --noinput --clear
 
 RUN chmod +x docker-entrypoint.sh
 
