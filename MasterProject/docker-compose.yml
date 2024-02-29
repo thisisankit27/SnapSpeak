@@ -32,10 +32,7 @@ services:
     depends_on:
       - app
       - redis
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: snapspeak-celery:v1
+    image: snapspeak-django:v1
     env_file:
       - .env
     container_name: snapspeak_celery_worker
