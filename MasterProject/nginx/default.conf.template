@@ -1,9 +1,9 @@
 upstream django {
-    server app:8000;
+    server app:${DJANGO_EXPOSE_PORT};
 }
 
 server {
-    listen 80;
+    listen ${NGINX_EXPOSE_PORT};
 
     location / {
         proxy_pass http://django;
@@ -13,7 +13,6 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Referer $http_referer;
         proxy_set_header Origin $http_origin;
-        proxy_redirect off;
     }
 
     location /static/ {
